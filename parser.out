@@ -1,0 +1,383 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DIGITO
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> PUBLIC CLASE NCLASE LLAVEA CUERPOCLASE LLAVEC
+Rule 2     NCLASE -> NOMBRECLASE
+Rule 3     CUERPOCLASE -> VARIABLE PCOMA
+Rule 4     CUERPOCLASE -> LISTACUERPO RESTOMETODO PARENTESISC LLAVEA LLAVEC
+Rule 5     LISTACUERPO -> MODIFICARACCESO TIPODATO ID PARENTESISA
+Rule 6     RESTOMETODO -> TIPODATO ID LISTAPARAMETRO
+Rule 7     RESTOMETODO -> empty
+Rule 8     VARIABLE -> TIPODATO ID
+Rule 9     PARAMETRO -> TIPODATO ID
+Rule 10    LISTAPARAMETRO -> COMA PARAMETRO LISTAPARAMETRO
+Rule 11    LISTAPARAMETRO -> empty
+Rule 12    MODIFICARACCESO -> MODIFICADORACCESO
+Rule 13    LLAVEA -> LLAVEAPERTURA
+Rule 14    LLAVEC -> LLAVECIERRE
+Rule 15    PARENTESISA -> PARENTECISAPERTURA
+Rule 16    PARENTESISC -> PARENTESISCIERRE
+Rule 17    PCOMA -> PUNTOCOMA
+Rule 18    empty -> <empty>
+
+Terminals, with rules where they appear
+
+CLASE                : 1
+COMA                 : 10
+DIGITO               : 
+ID                   : 5 6 8 9
+LLAVEAPERTURA        : 13
+LLAVECIERRE          : 14
+MODIFICADORACCESO    : 12
+NOMBRECLASE          : 2
+PARENTECISAPERTURA   : 15
+PARENTESISCIERRE     : 16
+PUBLIC               : 1
+PUNTOCOMA            : 17
+TIPODATO             : 5 6 8 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+CUERPOCLASE          : 1
+LISTACUERPO          : 4
+LISTAPARAMETRO       : 6 10
+LLAVEA               : 1 4
+LLAVEC               : 1 4
+MODIFICARACCESO      : 5
+NCLASE               : 1
+PARAMETRO            : 10
+PARENTESISA          : 5
+PARENTESISC          : 4
+PCOMA                : 3
+RESTOMETODO          : 4
+S                    : 0
+VARIABLE             : 3
+empty                : 7 11
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . PUBLIC CLASE NCLASE LLAVEA CUERPOCLASE LLAVEC
+
+    PUBLIC          shift and go to state 2
+
+    S                              shift and go to state 1
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> PUBLIC . CLASE NCLASE LLAVEA CUERPOCLASE LLAVEC
+
+    CLASE           shift and go to state 3
+
+
+state 3
+
+    (1) S -> PUBLIC CLASE . NCLASE LLAVEA CUERPOCLASE LLAVEC
+    (2) NCLASE -> . NOMBRECLASE
+
+    NOMBRECLASE     shift and go to state 5
+
+    NCLASE                         shift and go to state 4
+
+state 4
+
+    (1) S -> PUBLIC CLASE NCLASE . LLAVEA CUERPOCLASE LLAVEC
+    (13) LLAVEA -> . LLAVEAPERTURA
+
+    LLAVEAPERTURA   shift and go to state 7
+
+    LLAVEA                         shift and go to state 6
+
+state 5
+
+    (2) NCLASE -> NOMBRECLASE .
+
+    LLAVEAPERTURA   reduce using rule 2 (NCLASE -> NOMBRECLASE .)
+
+
+state 6
+
+    (1) S -> PUBLIC CLASE NCLASE LLAVEA . CUERPOCLASE LLAVEC
+    (3) CUERPOCLASE -> . VARIABLE PCOMA
+    (4) CUERPOCLASE -> . LISTACUERPO RESTOMETODO PARENTESISC LLAVEA LLAVEC
+    (8) VARIABLE -> . TIPODATO ID
+    (5) LISTACUERPO -> . MODIFICARACCESO TIPODATO ID PARENTESISA
+    (12) MODIFICARACCESO -> . MODIFICADORACCESO
+
+    TIPODATO        shift and go to state 11
+    MODIFICADORACCESO shift and go to state 13
+
+    CUERPOCLASE                    shift and go to state 8
+    VARIABLE                       shift and go to state 9
+    LISTACUERPO                    shift and go to state 10
+    MODIFICARACCESO                shift and go to state 12
+
+state 7
+
+    (13) LLAVEA -> LLAVEAPERTURA .
+
+    TIPODATO        reduce using rule 13 (LLAVEA -> LLAVEAPERTURA .)
+    MODIFICADORACCESO reduce using rule 13 (LLAVEA -> LLAVEAPERTURA .)
+    LLAVECIERRE     reduce using rule 13 (LLAVEA -> LLAVEAPERTURA .)
+
+
+state 8
+
+    (1) S -> PUBLIC CLASE NCLASE LLAVEA CUERPOCLASE . LLAVEC
+    (14) LLAVEC -> . LLAVECIERRE
+
+    LLAVECIERRE     shift and go to state 15
+
+    LLAVEC                         shift and go to state 14
+
+state 9
+
+    (3) CUERPOCLASE -> VARIABLE . PCOMA
+    (17) PCOMA -> . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 17
+
+    PCOMA                          shift and go to state 16
+
+state 10
+
+    (4) CUERPOCLASE -> LISTACUERPO . RESTOMETODO PARENTESISC LLAVEA LLAVEC
+    (6) RESTOMETODO -> . TIPODATO ID LISTAPARAMETRO
+    (7) RESTOMETODO -> . empty
+    (18) empty -> .
+
+    TIPODATO        shift and go to state 19
+    PARENTESISCIERRE reduce using rule 18 (empty -> .)
+
+    RESTOMETODO                    shift and go to state 18
+    empty                          shift and go to state 20
+
+state 11
+
+    (8) VARIABLE -> TIPODATO . ID
+
+    ID              shift and go to state 21
+
+
+state 12
+
+    (5) LISTACUERPO -> MODIFICARACCESO . TIPODATO ID PARENTESISA
+
+    TIPODATO        shift and go to state 22
+
+
+state 13
+
+    (12) MODIFICARACCESO -> MODIFICADORACCESO .
+
+    TIPODATO        reduce using rule 12 (MODIFICARACCESO -> MODIFICADORACCESO .)
+
+
+state 14
+
+    (1) S -> PUBLIC CLASE NCLASE LLAVEA CUERPOCLASE LLAVEC .
+
+    $end            reduce using rule 1 (S -> PUBLIC CLASE NCLASE LLAVEA CUERPOCLASE LLAVEC .)
+
+
+state 15
+
+    (14) LLAVEC -> LLAVECIERRE .
+
+    $end            reduce using rule 14 (LLAVEC -> LLAVECIERRE .)
+    LLAVECIERRE     reduce using rule 14 (LLAVEC -> LLAVECIERRE .)
+
+
+state 16
+
+    (3) CUERPOCLASE -> VARIABLE PCOMA .
+
+    LLAVECIERRE     reduce using rule 3 (CUERPOCLASE -> VARIABLE PCOMA .)
+
+
+state 17
+
+    (17) PCOMA -> PUNTOCOMA .
+
+    LLAVECIERRE     reduce using rule 17 (PCOMA -> PUNTOCOMA .)
+
+
+state 18
+
+    (4) CUERPOCLASE -> LISTACUERPO RESTOMETODO . PARENTESISC LLAVEA LLAVEC
+    (16) PARENTESISC -> . PARENTESISCIERRE
+
+    PARENTESISCIERRE shift and go to state 24
+
+    PARENTESISC                    shift and go to state 23
+
+state 19
+
+    (6) RESTOMETODO -> TIPODATO . ID LISTAPARAMETRO
+
+    ID              shift and go to state 25
+
+
+state 20
+
+    (7) RESTOMETODO -> empty .
+
+    PARENTESISCIERRE reduce using rule 7 (RESTOMETODO -> empty .)
+
+
+state 21
+
+    (8) VARIABLE -> TIPODATO ID .
+
+    PUNTOCOMA       reduce using rule 8 (VARIABLE -> TIPODATO ID .)
+
+
+state 22
+
+    (5) LISTACUERPO -> MODIFICARACCESO TIPODATO . ID PARENTESISA
+
+    ID              shift and go to state 26
+
+
+state 23
+
+    (4) CUERPOCLASE -> LISTACUERPO RESTOMETODO PARENTESISC . LLAVEA LLAVEC
+    (13) LLAVEA -> . LLAVEAPERTURA
+
+    LLAVEAPERTURA   shift and go to state 7
+
+    LLAVEA                         shift and go to state 27
+
+state 24
+
+    (16) PARENTESISC -> PARENTESISCIERRE .
+
+    LLAVEAPERTURA   reduce using rule 16 (PARENTESISC -> PARENTESISCIERRE .)
+
+
+state 25
+
+    (6) RESTOMETODO -> TIPODATO ID . LISTAPARAMETRO
+    (10) LISTAPARAMETRO -> . COMA PARAMETRO LISTAPARAMETRO
+    (11) LISTAPARAMETRO -> . empty
+    (18) empty -> .
+
+    COMA            shift and go to state 29
+    PARENTESISCIERRE reduce using rule 18 (empty -> .)
+
+    LISTAPARAMETRO                 shift and go to state 28
+    empty                          shift and go to state 30
+
+state 26
+
+    (5) LISTACUERPO -> MODIFICARACCESO TIPODATO ID . PARENTESISA
+    (15) PARENTESISA -> . PARENTECISAPERTURA
+
+    PARENTECISAPERTURA shift and go to state 32
+
+    PARENTESISA                    shift and go to state 31
+
+state 27
+
+    (4) CUERPOCLASE -> LISTACUERPO RESTOMETODO PARENTESISC LLAVEA . LLAVEC
+    (14) LLAVEC -> . LLAVECIERRE
+
+    LLAVECIERRE     shift and go to state 15
+
+    LLAVEC                         shift and go to state 33
+
+state 28
+
+    (6) RESTOMETODO -> TIPODATO ID LISTAPARAMETRO .
+
+    PARENTESISCIERRE reduce using rule 6 (RESTOMETODO -> TIPODATO ID LISTAPARAMETRO .)
+
+
+state 29
+
+    (10) LISTAPARAMETRO -> COMA . PARAMETRO LISTAPARAMETRO
+    (9) PARAMETRO -> . TIPODATO ID
+
+    TIPODATO        shift and go to state 35
+
+    PARAMETRO                      shift and go to state 34
+
+state 30
+
+    (11) LISTAPARAMETRO -> empty .
+
+    PARENTESISCIERRE reduce using rule 11 (LISTAPARAMETRO -> empty .)
+
+
+state 31
+
+    (5) LISTACUERPO -> MODIFICARACCESO TIPODATO ID PARENTESISA .
+
+    TIPODATO        reduce using rule 5 (LISTACUERPO -> MODIFICARACCESO TIPODATO ID PARENTESISA .)
+    PARENTESISCIERRE reduce using rule 5 (LISTACUERPO -> MODIFICARACCESO TIPODATO ID PARENTESISA .)
+
+
+state 32
+
+    (15) PARENTESISA -> PARENTECISAPERTURA .
+
+    TIPODATO        reduce using rule 15 (PARENTESISA -> PARENTECISAPERTURA .)
+    PARENTESISCIERRE reduce using rule 15 (PARENTESISA -> PARENTECISAPERTURA .)
+
+
+state 33
+
+    (4) CUERPOCLASE -> LISTACUERPO RESTOMETODO PARENTESISC LLAVEA LLAVEC .
+
+    LLAVECIERRE     reduce using rule 4 (CUERPOCLASE -> LISTACUERPO RESTOMETODO PARENTESISC LLAVEA LLAVEC .)
+
+
+state 34
+
+    (10) LISTAPARAMETRO -> COMA PARAMETRO . LISTAPARAMETRO
+    (10) LISTAPARAMETRO -> . COMA PARAMETRO LISTAPARAMETRO
+    (11) LISTAPARAMETRO -> . empty
+    (18) empty -> .
+
+    COMA            shift and go to state 29
+    PARENTESISCIERRE reduce using rule 18 (empty -> .)
+
+    LISTAPARAMETRO                 shift and go to state 36
+    empty                          shift and go to state 30
+
+state 35
+
+    (9) PARAMETRO -> TIPODATO . ID
+
+    ID              shift and go to state 37
+
+
+state 36
+
+    (10) LISTAPARAMETRO -> COMA PARAMETRO LISTAPARAMETRO .
+
+    PARENTESISCIERRE reduce using rule 10 (LISTAPARAMETRO -> COMA PARAMETRO LISTAPARAMETRO .)
+
+
+state 37
+
+    (9) PARAMETRO -> TIPODATO ID .
+
+    COMA            reduce using rule 9 (PARAMETRO -> TIPODATO ID .)
+    PARENTESISCIERRE reduce using rule 9 (PARAMETRO -> TIPODATO ID .)
+
